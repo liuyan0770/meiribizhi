@@ -7,10 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import "RootViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize viewController;
+@synthesize navController;
 
 - (void)dealloc
 {
@@ -22,6 +25,13 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
+    
+    RootViewController *rootView = [[RootViewController alloc] init];//实例化RootViewController
+    rootView.title = @"Root View";//给rootView设置标题    
+    self.navController = [[UINavigationController alloc] init];//实例化navController
+    [self.navController pushViewController:rootView animated:YES];//将rootView视图压入栈中
+    [self.window addSubview:self.navController.view];//将导航控制器加到窗口上
+    //
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
